@@ -129,7 +129,7 @@ router.beforeEach((to,from,next)=>{
     next();
   }else{
     if (localStorage.getItem('token')=='null') {
-      next('/login');
+      next('/');
     }else{
       next();
     }

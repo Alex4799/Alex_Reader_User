@@ -1,7 +1,7 @@
 <template>
   <main id="main">
       <div style="min-height: 100vh;" class="d-flex flex-column justify-content-between">
-        <Nav v-if="$route.fullPath!='/login' && $route.fullPath!='/register'"></Nav>
+        <Nav v-if="$route.fullPath!='/' && $route.fullPath!='/register'"></Nav>
         <router-view/>
         <Footer></Footer>
       </div>
