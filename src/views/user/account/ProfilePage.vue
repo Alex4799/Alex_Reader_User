@@ -41,7 +41,7 @@
         <!-- My post  -->
         <div class="row">
             <div class="col-lg-8 offset-lg-2">
-                <div class="shadow my-2 p-5" v-for="(post,index) in myPost" :key="index">
+                <div class="shadow my-2 p-5" v-for="(post,index) in myPost.data" :key="index">
                     <div class="row">
 
                         <div class="col-lg-3">
@@ -74,13 +74,16 @@
                         </div>
                     </div>
                 </div>
+                <Bootstrap5Pagination :data="myPost" @pagination-change-page="getMyPost" />
             </div>
         </div>
+
     </div>
     </div>
 </template>
 
 <script>
+    import { Bootstrap5Pagination } from 'laravel-vue-pagination';
     import {mapState} from 'vuex';
     import axios from 'axios';
     export default {
@@ -94,6 +97,9 @@
         },
         computed: {
            ...mapState(['user','header']),
+        },
+        components: {
+            Bootstrap5Pagination
         },
         methods: {
             getUser () {
@@ -110,17 +116,17 @@
                     }
                 })
             },
-            getMyPost(){
-                axios.get(`http://alexmedia.alexlucifer.info/api/user/mypost/get/${this.user.id}`,{headers:this.header}).then((response)=>{
+            getMyPost(page=1){
+                axios.get(`http://alexmedia.alexlucifer.info/api/user/mypost/get/${this.user.id}?page=${page}`,{headers:this.header}).then((response)=>{
                     this.myPost=response.data;
-                    for (let i = 0; i < this.myPost.length; i++) {
-                        if (this.myPost[i].image!=null) {
-                            this.myPost[i].image=`http://alexmedia.alexlucifer.info/storage/${this.myPost[i].image}`;
+                    for (let i = 0; i < this.myPost.data.length; i++) {
+                        if (this.myPost.data[i].image!=null) {
+                            this.myPost.data[i].image=`http://alexmedia.alexlucifer.info/storage/${this.myPost.data[i].image}`;
                         }else{
-                            this.myPost[i].image=`http://alexmedia.alexlucifer.info/image/default.png`;
+                            this.myPost.data[i].image=`http://alexmedia.alexlucifer.info/image/default.png`;
                         }
-                        let d=new Date(this.myPost[i].created_at);
-                        this.myPost[i].created_at=`${d.getFullYear()}-${d.getMonth() + 1}-${d.getFullYear()}`
+                        let d=new Date(this.myPost.data[i].created_at);
+                        this.myPost.data[i].created_at=`${d.getFullYear()}-${d.getMonth() + 1}-${d.getFullYear()}`
                     }
                     this.loadingStatus=false;
                 })

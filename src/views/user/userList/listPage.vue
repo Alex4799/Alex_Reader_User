@@ -20,7 +20,7 @@
                         </div>
                     </div>
             </div>
-            <div v-for="(user,index) in users" :key="index">
+            <div v-for="(user,index) in users.data" :key="index">
                 <div class="row shadow p-3" @click=goViewProfile(user.id)>
                     <div class="col-lg-3">
                         <img :src="user.image" class=" w-75 shadow">
@@ -35,11 +35,15 @@
                     </div>
                 </div>
             </div>
+            <div>
+                <Bootstrap5Pagination :data="users" @pagination-change-page="getData" />
+            </div>
         </div>
     </div>
 </template>
 
 <script>
+import { Bootstrap5Pagination } from 'laravel-vue-pagination';
 import axios from 'axios'
 import { mapState } from 'vuex'
     export default {
@@ -55,36 +59,39 @@ import { mapState } from 'vuex'
         computed: {
             ...mapState(['header','user']),
         },
+        components: {
+            Bootstrap5Pagination
+        },
         methods: {
-            getData(){
-                axios.get('http://alexmedia.alexlucifer.info/api/users/list/get',{headers:this.header}).then((response)=>{
+            getData(page=1){
+                axios.get(`http://alexmedia.alexlucifer.info/api/users/list/get?page=${page}`,{headers:this.header}).then((response)=>{
                     this.users=response.data;
                     for (let i = 0; i < this.users.length; i++) {
-                        if (this.users[i].image==null) {
-                            if(this.users[i].gender=='male'){
-                                this.users[i].image=`http://alexmedia.alexlucifer.info/image/default-male-image.png`;
+                        if (this.users.data[i].image==null) {
+                            if(this.users.data[i].gender=='male'){
+                                this.users.data[i].image=`http://alexmedia.alexlucifer.info/image/default-male-image.png`;
                             }else{
-                                this.users[i].image=`http://alexmedia.alexlucifer.info/image/default-female-image.webp`;
+                                this.users.data[i].image=`http://alexmedia.alexlucifer.info/image/default-female-image.webp`;
                             }
                         }else{
-                            this.users[i].image=`http://alexmedia.alexlucifer.info/storage/${this.users[i].image}`;
+                            this.users.data[i].image=`http://alexmedia.alexlucifer.info/storage/${this.users.data[i].image}`;
                         }
                         
                     }
                 })
             },
-            searchUser(){
-                axios.get(`http://alexmedia.alexlucifer.info/api/users/list/search/${this.search_key}`,{headers:this.header}).then((response)=>{
+            searchUser(page=1){
+                axios.get(`http://alexmedia.alexlucifer.info/api/users/list/search/${this.search_key}?page=${page}`,{headers:this.header}).then((response)=>{
                     this.users=response.data;
                     for (let i = 0; i < this.users.length; i++) {
-                        if (this.users[i].image==null) {
-                            if(this.users[i].gender=='male'){
-                                this.users[i].image=`http://alexmedia.alexlucifer.info/image/default-male-image.png`;
+                        if (this.users.data[i].image==null) {
+                            if(this.users.data[i].gender=='male'){
+                                this.users.data[i].image=`http://alexmedia.alexlucifer.info/image/default-male-image.png`;
                             }else{
-                                this.users[i].image=`http://alexmedia.alexlucifer.info/image/default-female-image.webp`;
+                                this.users.data[i].image=`http://alexmedia.alexlucifer.info/image/default-female-image.webp`;
                             }
                         }else{
-                            this.users[i].image=`http://alexmedia.alexlucifer.info/storage/${this.users[i].image}`;
+                            this.users.data[i].image=`http://alexmedia.alexlucifer.info/storage/${this.users.data[i].image}`;
                         }
                         
                     }
