@@ -35,7 +35,7 @@
                             <span><i class="fa-solid fa-eye me-2"></i>{{data.post.view_count}}</span>
                         </div>
                     </div>
-                    <p class="">{{ data.post.content }}</p>
+                    <div class="" id="contact" v-html="data.post.content"></div>
 
                     <div class="row">
 
@@ -71,8 +71,6 @@
                             <h5 @click="toPostDetail(item.id)"><a class="text-dark text-decoration-none" >{{item.Title}}</a></h5>
 
                             <p class="text-muted">by {{item.user_name}}</p>
-
-                            <p class="">{{item.content.substr(0,10)+'....' }}</p>
 
                         </div>
                     </div>
@@ -164,12 +162,17 @@ import axios from 'axios'
         methods: {
             getPost(){
                 this.loadingStatus=true;
-                axios.get(`http://alexmedia.alexlucifer.info/api/user/post/view/${this.$route.params.id}`,{headers:this.header}).then((response)=>{
+                axios.get(`https://alexmedia.alexlucifer.info/api/user/post/view/${this.$route.params.id}`,{headers:this.header}).then((response)=>{
                     this.data=response.data;
+                    // this.$refs.contact.innerHTML=response.data.post.content;
+                    
+                    // if (response.data.post.content) {
+                    //     document.getElementById('content').innerHTML=response.data.post.content;
+                    // }
                     if (this.data.post.image!=null) {
-                        this.data.post.image=`http://alexmedia.alexlucifer.info/storage/${this.data.post.image}`;
+                        this.data.post.image=`https://alexmedia.alexlucifer.info/storage/${this.data.post.image}`;
                     }else{
-                        this.data.post.image=`http://alexmedia.alexlucifer.info/image/default.png`;
+                        this.data.post.image=`https://alexmedia.alexlucifer.info/image/default.png`;
                     }
                     let d=new Date(this.data.post.created_at);
                     this.data.post.created_at=`${d.getFullYear()}-${d.getMonth() + 1}-${d.getFullYear()}`
@@ -183,21 +186,22 @@ import axios from 'axios'
 
                     for (let i = 0; i < this.data.relatedPost.length; i++) {
                         if (this.data.relatedPost[i].image!=null) {
-                            this.data.relatedPost[i].image=`http://alexmedia.alexlucifer.info/storage/${this.data.relatedPost[i].image}`;
+                            this.data.relatedPost[i].image=`https://alexmedia.alexlucifer.info/storage/${this.data.relatedPost[i].image}`;
                         }else{
-                            this.data.relatedPost[i].image=`http://alexmedia.alexlucifer.info/image/default.png`;
+                            this.data.relatedPost[i].image=`https://alexmedia.alexlucifer.info/image/default.png`;
                         }
                     }
                     this.loadingStatus=false;
                 })
             },
             setlike(){
-                axios.get(`http://alexmedia.alexlucifer.info/api/user/like/set/${this.$route.params.id}`,{headers:this.header}).then((response)=>{
+                console.log(document.getElementById('content'));
+                axios.get(`https://alexmedia.alexlucifer.info/api/user/like/set/${this.$route.params.id}`,{headers:this.header}).then((response)=>{
                     this.data=response.data;
                     if (this.data.post.image!=null) {
-                         this.data.post.image=`http://alexmedia.alexlucifer.info/storage/${this.data.post.image}`;
+                         this.data.post.image=`https://alexmedia.alexlucifer.info/storage/${this.data.post.image}`;
                      }else{
-                         this.data.post.image=`http://alexmedia.alexlucifer.info/image/default.png`;
+                         this.data.post.image=`https://alexmedia.alexlucifer.info/image/default.png`;
                      }
                      let d=new Date(this.data.post.created_at);
                      this.data.post.created_at=`${d.getFullYear()}-${d.getMonth() + 1}-${d.getFullYear()}`
@@ -223,7 +227,7 @@ import axios from 'axios'
                     this.commentError=true;
                     this.messageLoadingStatus=false;
                 }else{
-                    axios.post('http://alexmedia.alexlucifer.info/api/user/send/comment',data,{headers:this.header}).then((response)=>{
+                    axios.post('https://alexmedia.alexlucifer.info/api/user/send/comment',data,{headers:this.header}).then((response)=>{
                         this.data.comments=response.data.comment;
                         this.messageLoadingStatus=false;
                         this.commentError=false;

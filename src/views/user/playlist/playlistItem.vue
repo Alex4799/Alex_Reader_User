@@ -75,14 +75,14 @@ import { mapState } from 'vuex';
         methods: {
             getData () {
                 this.loadingStatus=true;
-                axios.get(`http://alexmedia.alexlucifer.info/api/user/playlist/item/${this.$route.params.id}`,{headers:this.header}).then((response)=>{
+                axios.get(`https://alexmedia.alexlucifer.info/api/user/playlist/item/${this.$route.params.id}`,{headers:this.header}).then((response)=>{
                     this.posts=response.data.posts;
                     this.playlist=response.data.playlist;
                     for (let i = 0; i < this.posts.length; i++) {
                         if (this.posts[i].image!=null) {
-                            this.posts[i].image=`http://alexmedia.alexlucifer.info/storage/${this.posts[i].image}`;
+                            this.posts[i].image=`https://alexmedia.alexlucifer.info/storage/${this.posts[i].image}`;
                         }else{
-                            this.posts[i].image=`http://alexmedia.alexlucifer.info/image/default.png`;
+                            this.posts[i].image=`https://alexmedia.alexlucifer.info/image/default.png`;
                         }
                         let d=new Date(this.posts[i].created_at);
                         this.posts[i].created_at=`${d.getFullYear()}-${d.getMonth() + 1}-${d.getFullYear()}`
@@ -93,13 +93,13 @@ import { mapState } from 'vuex';
             },
             removePost(id){
                 this.loadingStatus=true;
-                axios.get(`http://alexmedia.alexlucifer.info/api/user/playlist/item/remove/${id}/${this.$route.params.id}`,{headers:this.header}).then((response)=>{
+                axios.get(`https://alexmedia.alexlucifer.info/api/user/playlist/item/remove/${id}/${this.$route.params.id}`,{headers:this.header}).then((response)=>{
                     this.posts=response.data.posts;
                     for (let i = 0; i < this.posts.length; i++) {
                         if (this.posts[i].image!=null) {
-                            this.posts[i].image=`http://alexmedia.alexlucifer.info/storage/${this.posts[i].image}`;
+                            this.posts[i].image=`https://alexmedia.alexlucifer.info/storage/${this.posts[i].image}`;
                         }else{
-                            this.posts[i].image=`http://alexmedia.alexlucifer.info/image/default.png`;
+                            this.posts[i].image=`https://alexmedia.alexlucifer.info/image/default.png`;
                         }
                         let d=new Date(this.posts[i].created_at);
                         this.posts[i].created_at=`${d.getFullYear()}-${d.getMonth() + 1}-${d.getFullYear()}`

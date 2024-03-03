@@ -71,7 +71,7 @@ import axios from 'axios';
         methods: {
             register(){
                 this.loadingStatus=true;
-                axios.post('http://alexmedia.alexlucifer.info/api/user/register',this.userData).then((response)=>{
+                axios.post('https://alexmedia.alexlucifer.info/api/user/register',this.userData).then((response)=>{
                     if (response.data.token!=null) {
                         this.loginFail=false;
 

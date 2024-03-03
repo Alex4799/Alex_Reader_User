@@ -59,7 +59,7 @@ import { mapState } from 'vuex'
 
                 }else{
                     this.playListData.user_id=this.user.id;
-                    axios.post(`http://alexmedia.alexlucifer.info/api/user/playlist/update`,this.playListData,{headers:this.header}).then((response)=>{
+                    axios.post(`https://alexmedia.alexlucifer.info/api/user/playlist/update`,this.playListData,{headers:this.header}).then((response)=>{
                         if (response.data.status) {
                             this.$router.push({name:'playListPage'});
                         }
@@ -67,7 +67,7 @@ import { mapState } from 'vuex'
                 }
             },
             getPlaylist(){
-                axios.get(`http://alexmedia.alexlucifer.info/api/user/playlist/edit/${this.$route.params.id}`,{headers:this.header}).then((response)=>{
+                axios.get(`https://alexmedia.alexlucifer.info/api/user/playlist/edit/${this.$route.params.id}`,{headers:this.header}).then((response)=>{
                     this.playListData.user_id=response.data.user_id;
                     this.playListData.name=response.data.name;
                     this.playListData.id=this.$route.params.id;

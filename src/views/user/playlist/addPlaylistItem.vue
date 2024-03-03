@@ -75,14 +75,14 @@ import { mapState } from 'vuex'
         methods: {
             getData () {
                 this.loadingStatus=true;
-                axios.get(`http://alexmedia.alexlucifer.info/api/user/playlist/item/add/getData/${this.$route.params.id}`,{headers:this.header}).then((response)=>{
+                axios.get(`https://alexmedia.alexlucifer.info/api/user/playlist/item/add/getData/${this.$route.params.id}`,{headers:this.header}).then((response)=>{
                     this.setData(response);
                     this.loadingStatus=false;
                 });
             },
             addPost(id){
                 this.loadingStatus=true;
-                axios.get(`http://alexmedia.alexlucifer.info/api/user/playlist/item/add/${id}/${this.playlist.id}`,{headers:this.header}).then((response)=>{
+                axios.get(`https://alexmedia.alexlucifer.info/api/user/playlist/item/add/${id}/${this.playlist.id}`,{headers:this.header}).then((response)=>{
                     this.setData(response);
                     this.loadingStatus=false;
                 });
@@ -92,9 +92,9 @@ import { mapState } from 'vuex'
                     this.playlist=response.data.playlist;
                     for (let i = 0; i < this.posts.length; i++) {
                         if (this.posts[i].image!=null) {
-                            this.posts[i].image=`http://alexmedia.alexlucifer.info/storage/${this.posts[i].image}`;
+                            this.posts[i].image=`https://alexmedia.alexlucifer.info/storage/${this.posts[i].image}`;
                         }else{
-                            this.posts[i].image=`http://alexmedia.alexlucifer.info/image/default.png`;
+                            this.posts[i].image=`https://alexmedia.alexlucifer.info/image/default.png`;
                         }
                         let d=new Date(this.posts[i].created_at);
                         this.posts[i].created_at=`${d.getFullYear()}-${d.getMonth() + 1}-${d.getFullYear()}`

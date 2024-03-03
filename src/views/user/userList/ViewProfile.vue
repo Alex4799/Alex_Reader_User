@@ -55,7 +55,7 @@
                                 <p><a v-if="post.playlist_id != null">({{post.playlist_name}})</a></p>
                             <!-- @endif -->
 
-                            <p class="">{{ post.content.substr(0,100)+'....'}}</p>
+                            <p class="" v-html=" post.content.substr(0,100)"></p>
 
                             <div class="row">
                                 <div class="col-6">
@@ -96,27 +96,27 @@
         },
         methods: {
             getUser () {
-                axios.get(`http://alexmedia.alexlucifer.info/api/user/get/${this.$route.params.id}`,{headers:this.header}).then((response)=>{
+                axios.get(`https://alexmedia.alexlucifer.info/api/user/get/${this.$route.params.id}`,{headers:this.header}).then((response)=>{
                     this.userData=response.data;
                     if (this.userData.image==null) {
                         if(this.userData.gender=='male'){
-                            this.userData.image=`http://alexmedia.alexlucifer.info/image/default-male-image.png`;
+                            this.userData.image=`https://alexmedia.alexlucifer.info/image/default-male-image.png`;
                         }else{
-                            this.userData.image=`http://alexmedia.alexlucifer.info/image/default-female-image.webp`;
+                            this.userData.image=`https://alexmedia.alexlucifer.info/image/default-female-image.webp`;
                         }
                     }else{
-                        this.userData.image=`http://alexmedia.alexlucifer.info/storage/${this.userData.image}`;
+                        this.userData.image=`https://alexmedia.alexlucifer.info/storage/${this.userData.image}`;
                     }
                 })
             },
             getMyPost(page=1){
-                axios.get(`http://alexmedia.alexlucifer.info/api/user/mypost/get/${this.$route.params.id}?page=${page}`,{headers:this.header}).then((response)=>{
+                axios.get(`https://alexmedia.alexlucifer.info/api/user/mypost/get/${this.$route.params.id}?page=${page}`,{headers:this.header}).then((response)=>{
                     this.myPost=response.data;
                     for (let i = 0; i < this.myPost.data.length; i++) {
                         if (this.myPost.data[i].image!=null) {
-                            this.myPost.data[i].image=`http://alexmedia.alexlucifer.info/storage/${this.myPost.data[i].image}`;
+                            this.myPost.data[i].image=`https://alexmedia.alexlucifer.info/storage/${this.myPost.data[i].image}`;
                         }else{
-                            this.myPost.data[i].image=`http://alexmedia.alexlucifer.info/image/default.png`;
+                            this.myPost.data[i].image=`https://alexmedia.alexlucifer.info/image/default.png`;
                         }
                         let d=new Date(this.myPost.data[i].created_at);
                         this.myPost.data[i].created_at=`${d.getFullYear()}-${d.getMonth() + 1}-${d.getFullYear()}`

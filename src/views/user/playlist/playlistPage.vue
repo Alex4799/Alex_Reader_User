@@ -69,11 +69,11 @@ import { mapState } from 'vuex'
         methods: {
             getPlaylist () {
                 this.loadingStatus=true;
-                axios.get(`http://alexmedia.alexlucifer.info/api/user/playlist/get/${this.user.id}`,{headers:this.header}).then((response)=>{
+                axios.get(`https://alexmedia.alexlucifer.info/api/user/playlist/get/${this.user.id}`,{headers:this.header}).then((response)=>{
                     this.platlists=response.data;
                     this.playlistCount=this.platlists.length;
                     for (let i = 0; i < this.playlistCount; i++) {
-                        axios.get(`http://alexmedia.alexlucifer.info/api/user/playlist/postCount/${this.platlists[i].id}`,{headers:this.header}).then((response)=>{
+                        axios.get(`https://alexmedia.alexlucifer.info/api/user/playlist/postCount/${this.platlists[i].id}`,{headers:this.header}).then((response)=>{
                             this.platlists[i].post_count=response.data;
                         })
                     }
@@ -87,11 +87,11 @@ import { mapState } from 'vuex'
                         'id':this.user.id,
                         'searchKey':this.searchKey,
                     };
-                    axios.post(`http://alexmedia.alexlucifer.info/api/user/playlist/get/search`,data,{headers:this.header}).then((response)=>{
+                    axios.post(`https://alexmedia.alexlucifer.info/api/user/playlist/get/search`,data,{headers:this.header}).then((response)=>{
                         this.platlists=response.data;
                         this.playlistCount=this.platlists.length;
                         for (let i = 0; i < this.playlistCount; i++) {
-                            axios.get(`http://alexmedia.alexlucifer.info/api/user/playlist/postCount/${this.platlists[i].id}`,{headers:this.header}).then((response)=>{
+                            axios.get(`https://alexmedia.alexlucifer.info/api/user/playlist/postCount/${this.platlists[i].id}`,{headers:this.header}).then((response)=>{
                                 this.platlists[i].post_count=response.data;
                             })
                         }
@@ -116,11 +116,11 @@ import { mapState } from 'vuex'
             },
             deleteItem(id){
                 this.loadingStatus=true;
-                axios.get(`http://alexmedia.alexlucifer.info/api/user/playlist/delete/${id}`,{headers:this.header}).then((response)=>{
+                axios.get(`https://alexmedia.alexlucifer.info/api/user/playlist/delete/${id}`,{headers:this.header}).then((response)=>{
                     this.platlists=response.data;
                     this.playlistCount=this.platlists.length;
                     for (let i = 0; i < this.playlistCount; i++) {
-                        axios.get(`http://alexmedia.alexlucifer.info/api/user/playlist/postCount/${this.platlists[i].id}`,{headers:this.header}).then((response)=>{
+                        axios.get(`https://alexmedia.alexlucifer.info/api/user/playlist/postCount/${this.platlists[i].id}`,{headers:this.header}).then((response)=>{
                             this.platlists[i].post_count=response.data;
                         })
                     }

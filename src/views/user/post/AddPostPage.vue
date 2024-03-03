@@ -55,8 +55,7 @@
                     </div>
 
                     <div class="mb-3 row">
-                        <textarea v-if="!contentError" name="content" placeholder="Enter Your content" class="form-control" cols="30" rows="10" v-model="postData.content"></textarea>
-                        <textarea v-if="contentError" name="content" placeholder="Enter Your content" class="form-control is-invalid" cols="30" rows="10" v-model="postData.content"></textarea>
+                        <ckeditor :editor="editor" v-model="postData.content" :config="editorConfig"></ckeditor>
                         <span v-if="contentError" class="text-danger">Content is required</span>
                     </div>
 
@@ -72,10 +71,16 @@
 <script>
     import { mapState } from 'vuex';
     import axios from 'axios';
+    import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
     export default {
         name:'AddPostPage',
         data () {
             return {
+                editor: ClassicEditor,
+                editorData: '<p>Content of the editor.</p>',
+                editorConfig: {
+                    // The configuration of the editor.
+                },
                 loadingStatus:false,
                 titleError:false,
                 categoryError:false,
@@ -86,7 +91,7 @@
                     title:'',
                     category_id:null,
                     playlist_id:null,
-                    content:null,
+                    content:'',
                     image:null,
                     user_id:null,
                 }
@@ -97,12 +102,12 @@
         },
         methods: {
            getCategory(){
-                axios.get('http://alexmedia.alexlucifer.info/api/user/category/get',{headers:this.header}).then((response)=>{
+                axios.get('https://alexmedia.alexlucifer.info/api/user/category/get',{headers:this.header}).then((response)=>{
                     this.categories=response.data;
                 })  
            },
            getMyPlaylist(){
-            axios.get(`http://alexmedia.alexlucifer.info/api/user/playlist/get/${this.user.id}`,{headers:this.header}).then((response)=>{
+            axios.get(`https://alexmedia.alexlucifer.info/api/user/playlist/get/${this.user.id}`,{headers:this.header}).then((response)=>{
                     this.playlists=response.data;
                 })
            },
@@ -119,13 +124,13 @@
                     this.categoryError=true;
                     this.loadingStatus=false;
 
-                }else if(this.postData.content==null){
+                }else if(this.postData.content==""){
                     this.contentError=true;
                     this.loadingStatus=false;
 
                 }else{
                     this.postData.user_id=this.user.id;
-                    axios.post(`http://alexmedia.alexlucifer.info/api/user/post/add`,this.postData,{headers:this.header}).then(()=>{
+                    axios.post(`https://alexmedia.alexlucifer.info/api/user/post/add`,this.postData,{headers:this.header}).then(()=>{
                         this.$router.push({name:'post'});
                     })
                 }

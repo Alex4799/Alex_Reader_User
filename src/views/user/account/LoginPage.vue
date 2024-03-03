@@ -72,7 +72,7 @@ export default {
     methods: {
         login () {
             this.loadingStatus=true;
-            axios.post('http://alexmedia.alexlucifer.info/api/user/login',this.userData).then((response)=>{
+            axios.post('https://alexmedia.alexlucifer.info/api/user/login',this.userData).then((response)=>{
                 if (response.data.token!=null) {
                     this.loginSuccess=true;
                     this.loginFail=false;

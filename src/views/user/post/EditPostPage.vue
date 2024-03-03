@@ -59,8 +59,7 @@
                     </div>
 
                     <div class="mb-3 row">
-                        <textarea v-if="!contentError" name="content" placeholder="Enter Your content" class="form-control" cols="30" rows="10" v-model="data.post.content"></textarea>
-                        <textarea v-if="contentError" name="content" placeholder="Enter Your content" class="form-control is-invalid" cols="30" rows="10" v-model="data.post.content"></textarea>
+                        <ckeditor :editor="editor" v-model="data.post.content" :config="editorConfig"></ckeditor>
                         <span v-if="contentError" class="text-danger">Content is required</span>
                     </div>
 
@@ -76,10 +75,16 @@
 <script>
     import { mapState } from 'vuex';
     import axios from 'axios';
+    import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
     export default {
         name:'AddPostPage',
         data () {
             return {
+                editor: ClassicEditor,
+                editorData: '<p>Content of the editor.</p>',
+                editorConfig: {
+                    // The configuration of the editor.
+                },
                 loadingStatus:false,
                 loadingStatus1:false,
                 titleError:false,
@@ -95,12 +100,12 @@
         methods: {
             getPost(){
                 this.loadingStatus1=true;
-                axios.get(`http://alexmedia.alexlucifer.info/api/user/post/edit/${this.$route.params.id}`,{headers:this.header}).then((response)=>{
+                axios.get(`https://alexmedia.alexlucifer.info/api/user/post/edit/${this.$route.params.id}`,{headers:this.header}).then((response)=>{
                     this.data=response.data;
                     if (this.data.post.image!=null) {
-                        this.data.post.image=`http://alexmedia.alexlucifer.info/storage/${this.data.post.image}`;
+                        this.data.post.image=`https://alexmedia.alexlucifer.info/storage/${this.data.post.image}`;
                     }else{
-                        this.data.post.image=`http://alexmedia.alexlucifer.info/image/default.png`;
+                        this.data.post.image=`https://alexmedia.alexlucifer.info/image/default.png`;
                     }
                     let d=new Date(this.data.post.created_at);
                     this.data.post.created_at=`${d.getFullYear()}-${d.getMonth() + 1}-${d.getFullYear()}`
@@ -125,7 +130,7 @@
                     this.loadingStatus=false;
 
                 }else{
-                    axios.post(`http://alexmedia.alexlucifer.info/api/user/post/update`,this.data.post,{headers:this.header}).then((response)=>{
+                    axios.post(`https://alexmedia.alexlucifer.info/api/user/post/update`,this.data.post,{headers:this.header}).then((response)=>{
                         if(response.data.status){
                             this.$router.push({path:`/post/detail/${this.$route.params.id}`});
                         }

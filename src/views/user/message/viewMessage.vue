@@ -65,7 +65,7 @@ import { mapState } from 'vuex'
         methods: {
             getData (id) {
                 this.loadingStatus=true;
-                axios.get(`http://alexmedia.alexlucifer.info/api/user/message/view/${id}`,{headers:this.header}).then((response)=>{
+                axios.get(`https://alexmedia.alexlucifer.info/api/user/message/view/${id}`,{headers:this.header}).then((response)=>{
                     this.message=response.data.message;
                     this.reply_message=response.data.reply_message;
                     this.loadingStatus=false;

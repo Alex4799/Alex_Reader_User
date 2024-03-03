@@ -47,7 +47,7 @@ import axios from 'axios'
                         name:this.categoryName,
                     }
 
-                    axios.post('http://alexmedia.alexlucifer.info/api/user/category/add',data,{headers:this.header}).then((response)=>{
+                    axios.post('https://alexmedia.alexlucifer.info/api/user/category/add',data,{headers:this.header}).then((response)=>{
                         if (response.data.status) {
                             this.$router.push({name:'categoryList'});
                         }

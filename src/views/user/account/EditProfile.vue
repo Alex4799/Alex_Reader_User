@@ -94,16 +94,16 @@ import { mapState } from 'vuex';
         },
         methods: {
             getUser () {
-                axios.get(`http://alexmedia.alexlucifer.info/api/user/get/${this.user.id}`,{headers:this.header}).then((response)=>{
+                axios.get(`https://alexmedia.alexlucifer.info/api/user/get/${this.user.id}`,{headers:this.header}).then((response)=>{
                     this.userData=response.data;
                     if (this.userData.image==null) {
                         if(this.userData.gender=='male'){
-                            this.userData.image=`http://alexmedia.alexlucifer.info/image/default-male-image.png`;
+                            this.userData.image=`https://alexmedia.alexlucifer.info/image/default-male-image.png`;
                         }else{
-                            this.userData.image=`http://alexmedia.alexlucifer.info/image/default-female-image.webp`;
+                            this.userData.image=`https://alexmedia.alexlucifer.info/image/default-female-image.webp`;
                         }
                     }else{
-                        this.userData.image=`http://alexmedia.alexlucifer.info/storage/${this.userData.image}`;
+                        this.userData.image=`https://alexmedia.alexlucifer.info/storage/${this.userData.image}`;
                     }
                 })
             },
@@ -128,16 +128,16 @@ import { mapState } from 'vuex';
                         'userImage':this.userImage,
                     };
                     this.header['Content-Type']='multipart/form-data';
-                    axios.post(`http://alexmedia.alexlucifer.info/api/user/update/${this.userData.id}`,data,{headers:this.header}).then((response)=>{
+                    axios.post(`https://alexmedia.alexlucifer.info/api/user/update/${this.userData.id}`,data,{headers:this.header}).then((response)=>{
                         this.userData=response.data;
                         if (this.userData.image==null) {
                             if(this.userData.gender=='male'){
-                                this.userData.image=`http://alexmedia.alexlucifer.info/image/default-male-image.png`;
+                                this.userData.image=`https://alexmedia.alexlucifer.info/image/default-male-image.png`;
                             }else{
-                                this.userData.image=`http://alexmedia.alexlucifer.info/image/default-female-image.webp`;
+                                this.userData.image=`https://alexmedia.alexlucifer.info/image/default-female-image.webp`;
                             }
                         }else{
-                            this.userData.image=`http://alexmedia.alexlucifer.info/storage/${this.userData.image}`;
+                            this.userData.image=`https://alexmedia.alexlucifer.info/storage/${this.userData.image}`;
                         }
                         
                         this.loadingStatus=false;
