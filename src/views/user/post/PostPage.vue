@@ -119,7 +119,8 @@
             },
             getCategory(){
                 axios.get('https://alexmedia.alexlucifer.info/api/user/category/get',{headers:this.header}).then((response)=>{
-                    this.categories=response.data.data;
+                    
+                    this.categories=response.data;
                 })
             },
             
