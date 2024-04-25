@@ -10,9 +10,9 @@
                 <a @click="AddPostPage" class="btn btn-secondary float-lg-end"><i class="fa-solid fa-plus"></i>Add Post</a>
             </div>
             <div class="row text-center">
-                    <div class="col-4">Search Key - {{ search_key }}</div>
-                    <div class="col-4">Total - {{ postCount }}</div>
-                    <div class="col-4">
+                    <div class="col-md-4 py-2">Search Key - {{ search_key }}</div>
+                    <div class="col-md-4 py-2">Total - {{ postCount }}</div>
+                    <div class="col-md-4 py-2">
                         <div class="input-group mb-3">
                             <input type="text" name="search_key" class="form-control" v-model="search_key" placeholder="Enter Author Name" aria-label="Recipient's username" aria-describedby="button-addon2">
                             <button class="btn btn-secondary" id="button-addon2" @click="postSearch" type="button">Search</button>
@@ -59,12 +59,9 @@
                                 <p class="" v-html="post.content.substr(0,100)"></p>
 
                                 <div class="row">
-                                    <div class="col-6">
+                                    <div class="">
                                         <div class="btn btn-light"><a href="#">{{post.category_name}}</a></div>
                                         <span><i class="fa-solid fa-eye me-2"></i>{{post.view_count}}</span>
-                                    </div>
-                                    <div class="col-4 offset-2">
-                                        <a href="#" v-if="post.user_id==user.id" class="btn btn-danger me-2" title="Delete"><i class="fa-solid fa-trash me-2"></i>Delete</a>
                                     </div>
                                 </div>
 

@@ -14,9 +14,9 @@
                 </div>
 
                 <div class="row text-center">
-                    <div class="col-4">Search Key - {{searchKey}}</div>
-                    <div class="col-4">Total - {{categoryCount}}</div>
-                    <div class="col-4">
+                    <div class="col-md-4 py-2">Search Key - {{searchKey}}</div>
+                    <div class="col-md-4 py-2">Total - {{categoryCount}}</div>
+                    <div class="col-md-4 py-2">
                         <div class="input-group mb-3">
                             <input v-model="searchKey" type="text" class="form-control" placeholder="Enter Category Name" aria-label="Recipient's username" aria-describedby="button-addon2">
                             <input @click="searchCategory" class="btn btn-secondary" type="button" id="button-addon2" value="Search">

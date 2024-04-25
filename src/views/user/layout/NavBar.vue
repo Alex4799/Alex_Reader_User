@@ -4,7 +4,7 @@
     <div class="container-fluid container-xl d-flex align-items-center justify-content-between">
 
       <a href="#" class="logo d-flex align-items-center">
-        <h1>ZenBlog</h1>
+        <h1>Alex Media</h1>
       </a>
 
       <nav id="navbar" class="navbar">
@@ -30,21 +30,28 @@
           </ul>
         </div>
         
-        <i class="bi bi-list mobile-nav-toggle ms-3"></i>
-
-        <!-- ======= Search Form ======= -->
-        <div class="search-form-wrap js-search-form-wrap">
-          <form action="search-result.html" class="search-form">
-            <span class="icon bi-search"></span>
-            <input type="text" placeholder="Search" class="form-control">
-            <button class="btn js-search-close"><span class="bi-x"></span></button>
-          </form>
-        </div>
+        <span @click="toggleSideNav(true)">
+          <i class="bi bi-list mobile-nav-toggle ms-3"></i>
+        </span>
 
       </div>
 
     </div>
-
+    <div v-if="sideNav" class=" position-absolute top-0 start-0 w-100 bg-white pe-2 shadow">
+      <div class="p-2">
+          <h1>Alex Media</h1>
+      </div>
+      <ul class="side-bar">
+          <li class="p-2 fs-4 border border-black"><router-link class="w-100" to="/post">Post</router-link></li>
+          <li class="p-2 fs-4 border border-black"><router-link class="w-100" to="/list/category">Category</router-link></li>
+          <li class="p-2 fs-4 border border-black"><router-link class="w-100" to="/list/playList">My PlayList</router-link></li>
+          <li class="p-2 fs-4 border border-black"><router-link class="w-100" to="/users/list">Users</router-link></li>
+          <li class="p-2 fs-4 border border-black"><router-link class="w-100" to="/list/message">Message</router-link></li>
+      </ul>
+      <div class="close position-absolute top-0 end-0 p-3" @click="toggleSideNav(false)">
+        <i class="fa-solid fa-xmark fs-3"></i>
+      </div>
+    </div>
   </header><!-- End Header -->
 </template>
 
@@ -54,15 +61,30 @@ import { mapState } from "vuex";
 
   export default defineComponent({
     name:'NavBar',
+    data () {
+      return {
+        sideNav: false,
+      }
+    },
     methods: {
       logout () {
         localStorage.setItem('token',null);
         this.$router.push({name:'login'});
-      }
+      },
+      toggleSideNav(status){
+        this.sideNav=status;
+      },
     },
     computed: {
       ...mapState(['user','header'])
     },
   })
 </script>
+<style>
+  *{
+    list-style: none;
+  }
+  .side-bar li{
 
+  }
+</style>

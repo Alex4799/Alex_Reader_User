@@ -11,9 +11,9 @@
             </div>
 
             <div class="row text-center">
-                    <div class="col-4">Search Key - {{ search_key }}</div>
-                    <div class="col-4">Total - {{ postCount }}</div>
-                    <div class="col-4">
+                    <div class="col-md-4 py-2">Search Key - {{ search_key }}</div>
+                    <div class="col-md-4 py-2">Total - {{ postCount }}</div>
+                    <div class="col-md-4 py-2">
                         <div class="input-group mb-3">
                             <input type="text" name="search_key" class="form-control" v-model="search_key" placeholder="Enter Author Name" aria-label="Recipient's username" aria-describedby="button-addon2">
                             <button class="btn btn-secondary" id="button-addon2" @click="searchUser" type="button">Search</button>

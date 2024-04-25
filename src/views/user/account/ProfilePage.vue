@@ -67,7 +67,7 @@
                                     <span><i class="fa-solid fa-eye me-2"></i>{{post.view_count}}</span>
                                 </div>
                                 <div class="col-4 offset-2">
-                                    <a class="btn btn-danger me-2" title="Delete"><i class="fa-solid fa-trash me-2"></i>Delete</a>
+                                    <button @click="deletePost(post.id)" class="btn btn-danger me-2" title="Delete"><i class="fa-solid fa-trash me-2"></i>Delete</button>
                                 </div>
                             </div>
 
@@ -118,6 +118,22 @@
             },
             getMyPost(page=1){
                 axios.get(`https://alexmedia.alexlucifer.info/api/user/mypost/get/${this.user.id}?page=${page}`,{headers:this.header}).then((response)=>{
+                    this.myPost=response.data;
+                    for (let i = 0; i < this.myPost.data.length; i++) {
+                        if (this.myPost.data[i].image!=null) {
+                            this.myPost.data[i].image=`https://alexmedia.alexlucifer.info/storage/${this.myPost.data[i].image}`;
+                        }else{
+                            this.myPost.data[i].image=`https://alexmedia.alexlucifer.info/image/default.png`;
+                        }
+                        let d=new Date(this.myPost.data[i].created_at);
+                        this.myPost.data[i].created_at=`${d.getFullYear()}-${d.getMonth() + 1}-${d.getFullYear()}`
+                    }
+                    this.loadingStatus=false;
+                })
+            },
+            deletePost(id,page=1){
+                this.loadingStatus=true;
+                axios.get(`https://alexmedia.alexlucifer.info/api/user/post/delete/${id}?page=${page}`,{headers:this.header}).then((response)=>{
                     this.myPost=response.data;
                     for (let i = 0; i < this.myPost.data.length; i++) {
                         if (this.myPost.data[i].image!=null) {

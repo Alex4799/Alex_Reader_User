@@ -26,10 +26,10 @@
                 <a @click="goSendMessage" class="btn btn-secondary float-lg-end"><i class="fa-solid fa-plus"></i>Sent Message</a>
             </div>
 
-            <div class="row  text-center">
-                <div class="col-4">Search Key - {{ search_key }}</div>
-                <div class="col-4">Total - {{total}}</div>
-                <div class="col-4">
+            <div class="row text-center">
+                <div class="col-md-4 py-2">Search Key - {{ search_key }}</div>
+                <div class="col-md-4 py-2">Total - {{total}}</div>
+                <div class="col-md-4 py-2">
                     <div class="input-group mb-3">
                         <input type="text" name="search_key" class="form-control" v-model="search_key" placeholder="Enter Author Name" aria-label="Recipient's username" aria-describedby="button-addon2">
                         <input class="btn btn-secondary" type="submit" @click="searchMessage" id="button-addon2" value="Search">
