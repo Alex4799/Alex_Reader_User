@@ -1,0 +1,2 @@
+"use strict";(self["webpackChunkalex_media_user"]=self["webpackChunkalex_media_user"]||[]).push([[28],{28:function(e,t,r){r.r(t),r.d(t,{default:function(){return o}});var u=r(252);function i(e,t,r,i,s,a){return(0,u.wg)(),(0,u.iD)("div")}var s={name:"RouteViewPost",methods:{routeView(e){this.$router.push({path:`/post/detail/${e}`})}},mounted(){this.routeView(this.$route.params.id)}},a=r(744);const n=(0,a.Z)(s,[["render",i]]);var o=n}}]);
+//# sourceMappingURL=28.fa418592.js.map
