@@ -47,7 +47,7 @@ import { mapState } from 'vuex'
                     this.errorStatus=true;
                 }else{
                     this.playListData.user_id=this.user.id;
-                    axios.post(`https://alexmedia.alexlucifer.info/api/user/playlist/add/playlist`,this.playListData,{headers:this.header}).then((response)=>{
+                    axios.post(`https://alexmedia.alexlucifer.com/api/user/playlist/add/playlist`,this.playListData,{headers:this.header}).then((response)=>{
                         if (response.data.status) {
                             this.$router.push({name:'playListPage'});
                         }

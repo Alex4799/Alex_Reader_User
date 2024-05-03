@@ -110,7 +110,7 @@ import { mapState } from 'vuex'
         methods: {
             getData () {
                 this.loadingStatus=true;
-                axios.get(`https://alexmedia.alexlucifer.info/api/user/message/list/${this.user.email}/${this.status}`,{headers:this.header}).then((response)=>{
+                axios.get(`https://alexmedia.alexlucifer.com/api/user/message/list/${this.user.email}/${this.status}`,{headers:this.header}).then((response)=>{
                     this.messages=response.data;
                     this.total=this.messages.length;
                     this.loadingStatus=false;
@@ -127,7 +127,7 @@ import { mapState } from 'vuex'
                     search_key:this.search_key,
                 };
                 this.loadingStatus=true;
-                axios.post(`https://alexmedia.alexlucifer.info/api/user/message/list/search`,data,{headers:this.header}).then((response)=>{
+                axios.post(`https://alexmedia.alexlucifer.com/api/user/message/list/search`,data,{headers:this.header}).then((response)=>{
                     this.messages=response.data;
                     this.total=this.messages.length;
                     this.loadingStatus=false;

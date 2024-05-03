@@ -100,12 +100,12 @@
         methods: {
             getPost(){
                 this.loadingStatus1=true;
-                axios.get(`https://alexmedia.alexlucifer.info/api/user/post/edit/${this.$route.params.id}`,{headers:this.header}).then((response)=>{
+                axios.get(`https://alexmedia.alexlucifer.com/api/user/post/edit/${this.$route.params.id}`,{headers:this.header}).then((response)=>{
                     this.data=response.data;
                     if (this.data.post.image!=null) {
-                        this.data.post.image=`https://alexmedia.alexlucifer.info/storage/${this.data.post.image}`;
+                        this.data.post.image=`https://alexmedia.alexlucifer.com/storage/${this.data.post.image}`;
                     }else{
-                        this.data.post.image=`https://alexmedia.alexlucifer.info/image/default.png`;
+                        this.data.post.image=`https://alexmedia.alexlucifer.com/image/default.png`;
                     }
                     let d=new Date(this.data.post.created_at);
                     this.data.post.created_at=`${d.getFullYear()}-${d.getMonth() + 1}-${d.getFullYear()}`
@@ -130,7 +130,7 @@
                     this.loadingStatus=false;
 
                 }else{
-                    axios.post(`https://alexmedia.alexlucifer.info/api/user/post/update`,this.data.post,{headers:this.header}).then((response)=>{
+                    axios.post(`https://alexmedia.alexlucifer.com/api/user/post/update`,this.data.post,{headers:this.header}).then((response)=>{
                         if(response.data.status){
                             this.$router.push({path:`/post/detail/${this.$route.params.id}`});
                         }

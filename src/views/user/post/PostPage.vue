@@ -99,13 +99,13 @@
         methods: {
             getPost (page=1) {
                 this.loadingStatus=true;
-                axios.get(`https://alexmedia.alexlucifer.info/api/user/post/get?page=${page}`,{headers:this.header}).then((response)=>{
+                axios.get(`https://alexmedia.alexlucifer.com/api/user/post/get?page=${page}`,{headers:this.header}).then((response)=>{
                     this.allPost=response.data;
                     for (let i = 0; i < this.allPost.data.length; i++) {
                         if (this.allPost.data[i].image!=null) {
-                            this.allPost.data[i].image=`https://alexmedia.alexlucifer.info/storage/${this.allPost.data[i].image}`;
+                            this.allPost.data[i].image=`https://alexmedia.alexlucifer.com/storage/${this.allPost.data[i].image}`;
                         }else{
-                            this.allPost.data[i].image=`https://alexmedia.alexlucifer.info/image/default.png`;
+                            this.allPost.data[i].image=`https://alexmedia.alexlucifer.com/image/default.png`;
                         }
                         let d=new Date(this.allPost.data[i].created_at);
                         this.allPost.data[i].created_at=`${d.getFullYear()}-${d.getMonth() + 1}-${d.getFullYear()}`
@@ -115,7 +115,7 @@
                 })
             },
             getCategory(){
-                axios.get('https://alexmedia.alexlucifer.info/api/user/category/get',{headers:this.header}).then((response)=>{
+                axios.get('https://alexmedia.alexlucifer.com/api/user/category/get',{headers:this.header}).then((response)=>{
                     
                     this.categories=response.data;
                 })
@@ -125,13 +125,13 @@
                 this.loadingStatus=true;
                 let category_id=event.target.id;
                     if (category_id!=0) {
-                        axios.get(`https://alexmedia.alexlucifer.info/api/user/post/get/category/${category_id}`,{headers:this.header}).then((response)=>{
+                        axios.get(`https://alexmedia.alexlucifer.com/api/user/post/get/category/${category_id}`,{headers:this.header}).then((response)=>{
                             this.allPost=response.data;
                     for (let i = 0; i < this.allPost.data.length; i++) {
                         if (this.allPost.data[i].image!=null) {
-                            this.allPost.data[i].image=`https://alexmedia.alexlucifer.info/storage/${this.allPost.data[i].image}`;
+                            this.allPost.data[i].image=`https://alexmedia.alexlucifer.com/storage/${this.allPost.data[i].image}`;
                         }else{
-                            this.allPost.data[i].image=`https://alexmedia.alexlucifer.info/image/default.png`;
+                            this.allPost.data[i].image=`https://alexmedia.alexlucifer.com/image/default.png`;
                         }
                         let d=new Date(this.allPost.data[i].created_at);
                         this.allPost.data[i].created_at=`${d.getFullYear()}-${d.getMonth() + 1}-${d.getFullYear()}`
@@ -152,13 +152,13 @@
             postSearch(page=1){
                 this.loadingStatus=true;
                 if(this.search_key!=''){
-                    axios.get(`https://alexmedia.alexlucifer.info/api/user/post/get/search/${this.search_key}?page=${page}`,{headers:this.header}).then((response)=>{
+                    axios.get(`https://alexmedia.alexlucifer.com/api/user/post/get/search/${this.search_key}?page=${page}`,{headers:this.header}).then((response)=>{
                         this.allPost=response.data;
                     for (let i = 0; i < this.allPost.data.length; i++) {
                         if (this.allPost.data[i].image!=null) {
-                            this.allPost.data[i].image=`https://alexmedia.alexlucifer.info/storage/${this.allPost.data[i].image}`;
+                            this.allPost.data[i].image=`https://alexmedia.alexlucifer.com/storage/${this.allPost.data[i].image}`;
                         }else{
-                            this.allPost.data[i].image=`https://alexmedia.alexlucifer.info/image/default.png`;
+                            this.allPost.data[i].image=`https://alexmedia.alexlucifer.com/image/default.png`;
                         }
                         let d=new Date(this.allPost.data[i].created_at);
                         this.allPost.data[i].created_at=`${d.getFullYear()}-${d.getMonth() + 1}-${d.getFullYear()}`

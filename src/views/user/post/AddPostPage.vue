@@ -102,12 +102,12 @@
         },
         methods: {
            getCategory(){
-                axios.get('https://alexmedia.alexlucifer.info/api/user/category/get',{headers:this.header}).then((response)=>{
+                axios.get('https://alexmedia.alexlucifer.com/api/user/category/get',{headers:this.header}).then((response)=>{
                     this.categories=response.data;
                 })  
            },
            getMyPlaylist(){
-            axios.get(`https://alexmedia.alexlucifer.info/api/user/playlist/get/${this.user.id}`,{headers:this.header}).then((response)=>{
+            axios.get(`https://alexmedia.alexlucifer.com/api/user/playlist/get/${this.user.id}`,{headers:this.header}).then((response)=>{
                     this.playlists=response.data;
                 })
            },
@@ -130,7 +130,7 @@
 
                 }else{
                     this.postData.user_id=this.user.id;
-                    axios.post(`https://alexmedia.alexlucifer.info/api/user/post/add`,this.postData,{headers:this.header}).then(()=>{
+                    axios.post(`https://alexmedia.alexlucifer.com/api/user/post/add`,this.postData,{headers:this.header}).then(()=>{
                         this.$router.push({name:'post'});
                     })
                 }

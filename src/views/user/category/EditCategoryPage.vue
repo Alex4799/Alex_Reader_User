@@ -49,7 +49,7 @@ import axios from 'axios'
         methods: {
             getCategoryData(id){
                 this.loadingStatus=true;
-                axios.get(`https://alexmedia.alexlucifer.info/api/user/category/getItem/${id}`,{headers:this.header}).then((response)=>{
+                axios.get(`https://alexmedia.alexlucifer.com/api/user/category/getItem/${id}`,{headers:this.header}).then((response)=>{
                     this.categoryId=response.data.id;
                     this.categoryName=response.data.name;
                     this.loadingStatus=false;
@@ -67,7 +67,7 @@ import axios from 'axios'
                         name:this.categoryName,
                         id:this.categoryId,
                     }
-                    axios.post('https://alexmedia.alexlucifer.info/api/user/category/update',data,{headers:this.header}).then((response)=>{
+                    axios.post('https://alexmedia.alexlucifer.com/api/user/category/update',data,{headers:this.header}).then((response)=>{
                         if (response.data.status) {
                             this.$router.push({name:'categoryList'});
                         }

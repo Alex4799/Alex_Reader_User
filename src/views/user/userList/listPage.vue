@@ -64,34 +64,34 @@ import { mapState } from 'vuex'
         },
         methods: {
             getData(page=1){
-                axios.get(`https://alexmedia.alexlucifer.info/api/users/list/get?page=${page}`,{headers:this.header}).then((response)=>{
+                axios.get(`https://alexmedia.alexlucifer.com/api/users/list/get?page=${page}`,{headers:this.header}).then((response)=>{
                     this.users=response.data;
                     for (let i = 0; i < this.users.length; i++) {
                         if (this.users.data[i].image==null) {
                             if(this.users.data[i].gender=='male'){
-                                this.users.data[i].image=`https://alexmedia.alexlucifer.info/image/default-male-image.png`;
+                                this.users.data[i].image=`https://alexmedia.alexlucifer.com/image/default-male-image.png`;
                             }else{
-                                this.users.data[i].image=`https://alexmedia.alexlucifer.info/image/default-female-image.webp`;
+                                this.users.data[i].image=`https://alexmedia.alexlucifer.com/image/default-female-image.webp`;
                             }
                         }else{
-                            this.users.data[i].image=`https://alexmedia.alexlucifer.info/storage/${this.users.data[i].image}`;
+                            this.users.data[i].image=`https://alexmedia.alexlucifer.com/storage/${this.users.data[i].image}`;
                         }
                         
                     }
                 })
             },
             searchUser(page=1){
-                axios.get(`https://alexmedia.alexlucifer.info/api/users/list/search/${this.search_key}?page=${page}`,{headers:this.header}).then((response)=>{
+                axios.get(`https://alexmedia.alexlucifer.com/api/users/list/search/${this.search_key}?page=${page}`,{headers:this.header}).then((response)=>{
                     this.users=response.data;
                     for (let i = 0; i < this.users.length; i++) {
                         if (this.users.data[i].image==null) {
                             if(this.users.data[i].gender=='male'){
-                                this.users.data[i].image=`https://alexmedia.alexlucifer.info/image/default-male-image.png`;
+                                this.users.data[i].image=`https://alexmedia.alexlucifer.com/image/default-male-image.png`;
                             }else{
-                                this.users.data[i].image=`https://alexmedia.alexlucifer.info/image/default-female-image.webp`;
+                                this.users.data[i].image=`https://alexmedia.alexlucifer.com/image/default-female-image.webp`;
                             }
                         }else{
-                            this.users.data[i].image=`https://alexmedia.alexlucifer.info/storage/${this.users.data[i].image}`;
+                            this.users.data[i].image=`https://alexmedia.alexlucifer.com/storage/${this.users.data[i].image}`;
                         }
                         
                     }

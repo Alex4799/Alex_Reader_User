@@ -76,7 +76,7 @@ import { mapState } from 'vuex'
                 this.sendData.sent_email=this.user.email;
                 this.sendData.reply_id=this.$route.params.reply_id;
                 if (this.sendData.reply_id!=0) {
-                    axios.get(`https://alexmedia.alexlucifer.info/api/user/message/reply/email/${this.sendData.reply_id}`,{headers:this.header}).then((response)=>{
+                    axios.get(`https://alexmedia.alexlucifer.com/api/user/message/reply/email/${this.sendData.reply_id}`,{headers:this.header}).then((response)=>{
                         this.sendData.receive_email=response.data;
                     });
                 }
@@ -98,7 +98,7 @@ import { mapState } from 'vuex'
                     this.error.content=false;
                 }
                 if (!this.error.receive_email && !this.error.title && !this.error.content) {
-                    axios.post(`https://alexmedia.alexlucifer.info/api/user/message/send`,this.sendData,{headers:this.header}).then((response)=>{
+                    axios.post(`https://alexmedia.alexlucifer.com/api/user/message/send`,this.sendData,{headers:this.header}).then((response)=>{
                         if (response.data.status=='success') {
                             this.$router.push({
                                 name:'MessageList',

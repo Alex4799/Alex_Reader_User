@@ -103,27 +103,27 @@
         },
         methods: {
             getUser () {
-                axios.get(`https://alexmedia.alexlucifer.info/api/user/get/${this.user.id}`,{headers:this.header}).then((response)=>{
+                axios.get(`https://alexmedia.alexlucifer.com/api/user/get/${this.user.id}`,{headers:this.header}).then((response)=>{
                     this.userData=response.data;
                     if (this.userData.image==null) {
                         if(this.userData.gender=='male'){
-                            this.userData.image=`https://alexmedia.alexlucifer.info/image/default-male-image.png`;
+                            this.userData.image=`https://alexmedia.alexlucifer.com/image/default-male-image.png`;
                         }else{
-                            this.userData.image=`https://alexmedia.alexlucifer.info/image/default-female-image.webp`;
+                            this.userData.image=`https://alexmedia.alexlucifer.com/image/default-female-image.webp`;
                         }
                     }else{
-                        this.userData.image=`https://alexmedia.alexlucifer.info/storage/${this.userData.image}`;
+                        this.userData.image=`https://alexmedia.alexlucifer.com/storage/${this.userData.image}`;
                     }
                 })
             },
             getMyPost(page=1){
-                axios.get(`https://alexmedia.alexlucifer.info/api/user/mypost/get/${this.user.id}?page=${page}`,{headers:this.header}).then((response)=>{
+                axios.get(`https://alexmedia.alexlucifer.com/api/user/mypost/get/${this.user.id}?page=${page}`,{headers:this.header}).then((response)=>{
                     this.myPost=response.data;
                     for (let i = 0; i < this.myPost.data.length; i++) {
                         if (this.myPost.data[i].image!=null) {
-                            this.myPost.data[i].image=`https://alexmedia.alexlucifer.info/storage/${this.myPost.data[i].image}`;
+                            this.myPost.data[i].image=`https://alexmedia.alexlucifer.com/storage/${this.myPost.data[i].image}`;
                         }else{
-                            this.myPost.data[i].image=`https://alexmedia.alexlucifer.info/image/default.png`;
+                            this.myPost.data[i].image=`https://alexmedia.alexlucifer.com/image/default.png`;
                         }
                         let d=new Date(this.myPost.data[i].created_at);
                         this.myPost.data[i].created_at=`${d.getFullYear()}-${d.getMonth() + 1}-${d.getFullYear()}`
@@ -133,13 +133,13 @@
             },
             deletePost(id,page=1){
                 this.loadingStatus=true;
-                axios.get(`https://alexmedia.alexlucifer.info/api/user/post/delete/${id}?page=${page}`,{headers:this.header}).then((response)=>{
+                axios.get(`https://alexmedia.alexlucifer.com/api/user/post/delete/${id}?page=${page}`,{headers:this.header}).then((response)=>{
                     this.myPost=response.data;
                     for (let i = 0; i < this.myPost.data.length; i++) {
                         if (this.myPost.data[i].image!=null) {
-                            this.myPost.data[i].image=`https://alexmedia.alexlucifer.info/storage/${this.myPost.data[i].image}`;
+                            this.myPost.data[i].image=`https://alexmedia.alexlucifer.com/storage/${this.myPost.data[i].image}`;
                         }else{
-                            this.myPost.data[i].image=`https://alexmedia.alexlucifer.info/image/default.png`;
+                            this.myPost.data[i].image=`https://alexmedia.alexlucifer.com/image/default.png`;
                         }
                         let d=new Date(this.myPost.data[i].created_at);
                         this.myPost.data[i].created_at=`${d.getFullYear()}-${d.getMonth() + 1}-${d.getFullYear()}`

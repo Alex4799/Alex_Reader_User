@@ -162,17 +162,12 @@ import axios from 'axios'
         methods: {
             getPost(){
                 this.loadingStatus=true;
-                axios.get(`https://alexmedia.alexlucifer.info/api/user/post/view/${this.$route.params.id}`,{headers:this.header}).then((response)=>{
+                axios.get(`https://alexmedia.alexlucifer.com/api/user/post/view/${this.$route.params.id}`,{headers:this.header}).then((response)=>{
                     this.data=response.data;
-                    // this.$refs.contact.innerHTML=response.data.post.content;
-                    
-                    // if (response.data.post.content) {
-                    //     document.getElementById('content').innerHTML=response.data.post.content;
-                    // }
                     if (this.data.post.image!=null) {
-                        this.data.post.image=`https://alexmedia.alexlucifer.info/storage/${this.data.post.image}`;
+                        this.data.post.image=`https://alexmedia.alexlucifer.com/storage/${this.data.post.image}`;
                     }else{
-                        this.data.post.image=`https://alexmedia.alexlucifer.info/image/default.png`;
+                        this.data.post.image=`https://alexmedia.alexlucifer.com/image/default.png`;
                     }
                     let d=new Date(this.data.post.created_at);
                     this.data.post.created_at=`${d.getFullYear()}-${d.getMonth() + 1}-${d.getFullYear()}`
@@ -186,22 +181,21 @@ import axios from 'axios'
 
                     for (let i = 0; i < this.data.relatedPost.length; i++) {
                         if (this.data.relatedPost[i].image!=null) {
-                            this.data.relatedPost[i].image=`https://alexmedia.alexlucifer.info/storage/${this.data.relatedPost[i].image}`;
+                            this.data.relatedPost[i].image=`https://alexmedia.alexlucifer.com/storage/${this.data.relatedPost[i].image}`;
                         }else{
-                            this.data.relatedPost[i].image=`https://alexmedia.alexlucifer.info/image/default.png`;
+                            this.data.relatedPost[i].image=`https://alexmedia.alexlucifer.com/image/default.png`;
                         }
                     }
                     this.loadingStatus=false;
                 })
             },
             setlike(){
-                console.log(document.getElementById('content'));
-                axios.get(`https://alexmedia.alexlucifer.info/api/user/like/set/${this.$route.params.id}`,{headers:this.header}).then((response)=>{
+                axios.get(`https://alexmedia.alexlucifer.com/api/user/like/set/${this.$route.params.id}`,{headers:this.header}).then((response)=>{
                     this.data=response.data;
                     if (this.data.post.image!=null) {
-                         this.data.post.image=`https://alexmedia.alexlucifer.info/storage/${this.data.post.image}`;
+                         this.data.post.image=`https://alexmedia.alexlucifer.com/storage/${this.data.post.image}`;
                      }else{
-                         this.data.post.image=`https://alexmedia.alexlucifer.info/image/default.png`;
+                         this.data.post.image=`https://alexmedia.alexlucifer.com/image/default.png`;
                      }
                      let d=new Date(this.data.post.created_at);
                      this.data.post.created_at=`${d.getFullYear()}-${d.getMonth() + 1}-${d.getFullYear()}`
@@ -211,6 +205,14 @@ import axios from 'axios'
                      if (this.user.id==this.data.post.user_id) {
                         this.editStatus=true
                     }
+                    for (let i = 0; i < this.data.relatedPost.length; i++) {
+                        if (this.data.relatedPost[i].image!=null) {
+                            this.data.relatedPost[i].image=`https://alexmedia.alexlucifer.com/storage/${this.data.relatedPost[i].image}`;
+                        }else{
+                            this.data.relatedPost[i].image=`https://alexmedia.alexlucifer.com/image/default.png`;
+                        }
+                    }
+                    this.loadingStatus=false;
                 })
             },
             toPostDetail(id){
@@ -227,7 +229,7 @@ import axios from 'axios'
                     this.commentError=true;
                     this.messageLoadingStatus=false;
                 }else{
-                    axios.post('https://alexmedia.alexlucifer.info/api/user/send/comment',data,{headers:this.header}).then((response)=>{
+                    axios.post('https://alexmedia.alexlucifer.com/api/user/send/comment',data,{headers:this.header}).then((response)=>{
                         this.data.comments=response.data.comment;
                         this.messageLoadingStatus=false;
                         this.commentError=false;

@@ -124,7 +124,7 @@ import { mapState } from 'vuex';
                     if (this.data.password==this.data.confirm_password) {
                         this.error.same_error=false;
                         
-                        axios.post(`https://alexmedia.alexlucifer.info/api/user/change/password`,this.data,{headers:this.header}).then((response)=>{
+                        axios.post(`https://alexmedia.alexlucifer.com/api/user/change/password`,this.data,{headers:this.header}).then((response)=>{
                             if (response.data.status=='success') {
                                 this.loadingStatus=false;
                                 this.error.incorrect_password=true;

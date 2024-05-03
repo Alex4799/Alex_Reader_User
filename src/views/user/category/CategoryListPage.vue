@@ -73,7 +73,7 @@ import { mapState } from 'vuex'
         methods: {
             getCategory (page=1) {
                 this.loadingStatus=true;
-                axios.get(`https://alexmedia.alexlucifer.info/api/user/category/main/get?page=${page}`,{headers:this.header}).then((response)=>{
+                axios.get(`https://alexmedia.alexlucifer.com/api/user/category/main/get?page=${page}`,{headers:this.header}).then((response)=>{
                     this.categories=response.data;
                     this.loadingStatus=false;
                     this.categoryCount=this.categories.length;
@@ -87,7 +87,7 @@ import { mapState } from 'vuex'
             },
             deleteCategory(id){
                 this.loadingStatus=true;
-                axios.get(`https://alexmedia.alexlucifer.info/api/user/category/delete/${id}`,{headers:this.header}).then((response)=>{
+                axios.get(`https://alexmedia.alexlucifer.com/api/user/category/delete/${id}`,{headers:this.header}).then((response)=>{
                     this.categories=response.data;
                     this.loadingStatus=false;
                     this.categoryCount=this.categories.length;
@@ -96,7 +96,7 @@ import { mapState } from 'vuex'
             searchCategory(page=1){
                 if (this.searchKey!='') {
                     this.loadingStatus=true;
-                    axios.get(`https://alexmedia.alexlucifer.info/api/user/category/search/${this.searchKey}?page=${page}`,{headers:this.header}).then((response)=>{
+                    axios.get(`https://alexmedia.alexlucifer.com/api/user/category/search/${this.searchKey}?page=${page}`,{headers:this.header}).then((response)=>{
                         this.categories=response.data;
                         this.loadingStatus=false;
                         this.categoryCount=this.categories.length;
